@@ -1,4 +1,6 @@
 Socialteeth3::Application.routes.draw do
+  resources :contributions
+
   get "home/index"
 
   resources :ads
