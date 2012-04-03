@@ -1,4 +1,8 @@
 class AdsController < ApplicationController
+  
+  before_filter :authenticate_user!, :except=>[:show, :index]
+  
+  
   # GET /ads
   # GET /ads.json
   def index
@@ -40,8 +44,11 @@ class AdsController < ApplicationController
   # POST /ads
   # POST /ads.json
   def create
-    @ad = Ad.new(params[:ad])
+    
+	@ad = Ad.new(params[:ad])
+	@ad.user=current_user
 
+	
     respond_to do |format|
       if @ad.save
         format.html { redirect_to @ad, notice: 'Ad was successfully created.' }
