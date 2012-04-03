@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>User</th>
+    <th>Contributer</th>
     <th>Ad</th>
     <th>Amount</th>
     <th></th>
@@ -12,8 +12,8 @@
 
 <% @contributions.each do |contribution| %>
   <tr>
-    <td><%= contribution.user %></td>
-    <td><%= contribution.ad %></td>
+    <td><%= contribution.user.name %></td>
+    <td><%= contribution.ad.title %></td>
     <td><%= contribution.amount %></td>
     <td><%= link_to 'Show', contribution %></td>
     <td><%= link_to 'Edit', edit_contribution_path(contribution) %></td>

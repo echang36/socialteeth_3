@@ -18,8 +18,11 @@ class AdsController < ApplicationController
   # GET /ads/1.json
   def show
     @ad = Ad.find(params[:id])
-
-    respond_to do |format|
+	
+	OEmbed::Providers.register_all
+	@res=OEmbed::Providers.get(@ad.link) 
+    
+	respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @ad }
     end

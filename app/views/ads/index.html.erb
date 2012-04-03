@@ -3,10 +3,8 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Link</th>
     <th>Goal</th>
-    <th>Description</th>
-    <th>User</th>
+    <th>Owner</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,10 +13,8 @@
 <% @ads.each do |ad| %>
   <tr>
     <td><%= ad.title %></td>
-    <td><%= ad.link %></td>
     <td><%= ad.goal %></td>
-    <td><%= ad.description %></td>
-    <td><%= ad.user.email %></td>
+    <td><%= ad.user.name%></td>
     <td><%= link_to 'Show', ad %></td>
     <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
     <td><%= link_to 'Destroy', ad, confirm: 'Are you sure?', method: :delete %></td>

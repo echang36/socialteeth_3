@@ -1,9 +1,15 @@
-<p id="notice"><%= notice %></p>
+
+<h2>   <%= @ad.title %> </h2>
 
 <p>
-  <b>Title:</b>
-  <%= @ad.title %>
+	<b> Ad ID: </b>
+	<%= @ad.id %>
+
+<p>
+  <b>Owner:</b>
+	<%= @ad.user.name %>
 </p>
+
 
 <p>
   <b>Link:</b>
@@ -11,20 +17,24 @@
 </p>
 
 <p>
-  <b>Goal:</b>
-  <%= @ad.goal %>
+	<b> Watch the ad </b> </br>
+	<%= @res.html.html_safe %>
 </p>
+
 
 <p>
   <b>Description:</b>
   <%= @ad.description %>
 </p>
 
+
 <p>
-  <b>User:</b>
-  <%= @ad.user.email %>
+  <b>Goal:</b> <%= @ad.goal %> <br />
 </p>
 
+
+<h3> Contribute </h3>
+<%= render :partial => '/contributions/form', :locals=> {:contribution => Contribution.new, :ad_id => @ad.id} %>
 
 <%= link_to 'Edit', edit_ad_path(@ad) %> |
 <%= link_to 'Back', ads_path %>

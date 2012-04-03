@@ -1,4 +1,8 @@
 class ContributionsController < ApplicationController
+
+  before_filter :authenticate_user!, :except=>[:show, :index]
+
+
   # GET /contributions
   # GET /contributions.json
   def index
@@ -40,8 +44,12 @@ class ContributionsController < ApplicationController
   # POST /contributions
   # POST /contributions.json
   def create
-    @contribution = Contribution.new(params[:contribution])
 
+    @contribution = Contribution.new(
+		user: current_user,
+		ad: Ad.find(params[:contribution][:ad]),
+		amount: params[:contribution][:amount])
+	
     respond_to do |format|
       if @contribution.save
         format.html { redirect_to @contribution, notice: 'Contribution was successfully created.' }
