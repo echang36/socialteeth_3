@@ -32,6 +32,14 @@
   <b>Goal:</b> <%= @ad.goal %> <br />
 </p>
 
+<p>
+  <b>Contributions:</b> 
+  <% @ad_contributions.each do |a| %>
+	<ul>
+	<li> <%= a.user.name %>, <%= a.amount %></li>
+  </ul>		
+  <% end %>
+</p>
 
 <h3> Contribute </h3>
 <%= render :partial => '/contributions/form', :locals=> {:contribution => Contribution.new, :ad_id => @ad.id} %>

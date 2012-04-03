@@ -4,7 +4,7 @@ new_user_session GET    	/users/sign_in(.:format)          {:action=>"new", :con
 
 user_session POST   		/users/sign_in(.:format)          {:action=>"create", :controller=>"devise/sessions"}
 
-destroy_user_session DELETE /users/sign_out(.:format)         {:action=>"destroy", :controller=>"devise/sessions"}
+destroy_user_session GET	/users/sign_out(.:format)         {:action=>"destroy", :controller=>"devise/sessions"}
 
 user_password POST  		/users/password(.:format)         {:action=>"create", :controller=>"devise/passwords"}
 

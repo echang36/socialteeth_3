@@ -1,0 +1,31 @@
+
+<h2> <%= current_user.name %> </h2>
+
+<p>
+	<b> Ads that you Own </b>
+	<table>
+		<tr>
+			<th>Ad</th>
+			<th>Amount Raised</th>
+			<th>Fundraising Goal </th>
+		</tr>
+		<% @owned_ads.each do |a| %>   
+			<tr>
+				<td><%= a.title %></td>
+				<td><"Add this functionality"></td>
+				<td><%= a.goal %></td>
+			</tr>
+		<% end %>
+	</table>
+</p>
+
+
+<p>
+	<b> Contributions: </b>
+	<ul>
+	<% @contributions.each do |c| %>   
+		<li>  <%= c.ad.title %>: <%=c.amount %></li>
+	<% end %>
+	</ul>
+</p>
+

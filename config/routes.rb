@@ -1,4 +1,6 @@
 Socialteeth3::Application.routes.draw do
+  get "user_profile/show"
+
   resources :contributions
 
   get "home/index"

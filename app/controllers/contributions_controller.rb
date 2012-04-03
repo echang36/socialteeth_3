@@ -45,11 +45,9 @@ class ContributionsController < ApplicationController
   # POST /contributions.json
   def create
 
-    @contribution = Contribution.new(
-		user: current_user,
-		ad: Ad.find(params[:contribution][:ad]),
-		amount: params[:contribution][:amount])
-	
+	current_ad=Ad.find(params[:contribution][:ad])
+    @contribution = current_user.contributions.build(ad: current_ad, amount: params[:contribution][:amount])
+
     respond_to do |format|
       if @contribution.save
         format.html { redirect_to @contribution, notice: 'Contribution was successfully created.' }

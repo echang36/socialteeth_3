@@ -13,14 +13,17 @@ class AdsController < ApplicationController
       format.json { render json: @ads }
     end
   end
+  
+  
 
   # GET /ads/1
   # GET /ads/1.json
   def show
     @ad = Ad.find(params[:id])
+	@ad_contributions = Contribution.where(ad_id: @ad.id)
 	
 	OEmbed::Providers.register_all
-	@res=OEmbed::Providers.get(@ad.link) 
+	@res=OEmbed::Providers.get(@ad.link, {:maxwidth => 500})
     
 	respond_to do |format|
       format.html # show.html.erb
@@ -28,6 +31,8 @@ class AdsController < ApplicationController
     end
   end
 
+  
+  
   # GET /ads/new
   # GET /ads/new.json
   def new
@@ -38,19 +43,14 @@ class AdsController < ApplicationController
       format.json { render json: @ad }
     end
   end
-
-  # GET /ads/1/edit
-  def edit
-    @ad = Ad.find(params[:id])
-  end
-
+  
+  
+  
   # POST /ads
   # POST /ads.json
   def create
     
-	@ad = Ad.new(params[:ad])
-	@ad.user=current_user
-
+	@ad=current_user.ads.build(params[:ad])
 	
     respond_to do |format|
       if @ad.save
@@ -62,6 +62,15 @@ class AdsController < ApplicationController
       end
     end
   end
+  
+  
+  
+  
+  # GET /ads/1/edit
+  def edit
+    @ad = Ad.find(params[:id])
+  end
+
 
   # PUT /ads/1
   # PUT /ads/1.json
@@ -78,6 +87,9 @@ class AdsController < ApplicationController
       end
     end
   end
+  
+  
+  
 
   # DELETE /ads/1
   # DELETE /ads/1.json
