@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  link: MyString
+  goal: 9.99
+  description: MyText
+  user: 
+
+two:
+  title: MyString
+  link: MyString
+  goal: 9.99
+  description: MyText
+  user: 
