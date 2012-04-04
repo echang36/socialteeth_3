@@ -16,5 +16,13 @@ class UserProfileController < ApplicationController
 	end	
   
   end
+  
+    protected
+	def check_if_owner (ad_id)
+		if current_user.id != ad_id
+			return false
+		end
+	end
+	
 
 end

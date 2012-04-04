@@ -3,7 +3,7 @@
 <html>
 
 <head>
-  <title>Socialteeth2</title>
+  <title>SocialTeeth</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -16,33 +16,40 @@
 	<div id="user_nav" >
 		<% if user_signed_in? %>
 			Signed in as <%= current_user.email %> |
-			<%= link_to "Account", user_profile_show_path %> |
-			<%= link_to "Sign out", destroy_user_session_path %>
+			<%= link_to "account", user_profile_show_path %> |
+			<%= link_to "sign out", destroy_user_session_path %>
 		<% else %>
 			<%=link_to "sign in", new_user_session_path%> or <%= link_to "sign up", new_user_registration_path %>
 		<% end %>
 	</div>
 
-  <div id="banner">
-    <%= image_tag("chattering_teeth.jpg") %>
-    <%= @page_title || "Social Teeth" %>
-  </div>
+	<div id="banner">
+		<%= image_tag("chattering_teeth.jpg") %>
+		<%= @page_title || "Social Teeth" %>
+	</div>
   
-  <div id="columns">
-    <div id="side">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/ads">Ads Index</a></li>
-        <li><a href="">Place Holder 2</a></li>
-        <li><a href="">Place Holder 3</a></li>
-      </ul>
-    </div>
+	<div id = "nav_bar" >
+		<table>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><a href="/">Home</a></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%= link_to "Browse", ads_path %></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%= link_to "Launch", new_ad_path%></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><a href="/">About Us</a</td>
+			</tr>
+		</table>		
+	</div>
+ 
     
 	<div id="main">
-      <%= yield %>
-    </div>
+		<%= render :partial=>"layouts/flash", :locals => {:flash => flash} %>
+		<%= yield %>
+	</div>
   
-  </div>
+
 <!-- END_HIGHLIGHT -->
 </body>
 </html>

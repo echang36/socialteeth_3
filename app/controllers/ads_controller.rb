@@ -1,7 +1,7 @@
 class AdsController < ApplicationController
   
   before_filter :authenticate_user!, :except=>[:show, :index]
-  
+  #before_filter :check_if_owner, :only=>[:edit, :update, :destroy]
   
   # GET /ads
   # GET /ads.json
@@ -73,23 +73,38 @@ class AdsController < ApplicationController
   # GET /ads/1/edit
   def edit
     @ad = Ad.find(params[:id])
+	if !check_if_owner(@ad.user_id)
+		respond_to do |format|
+			format.html { redirect_to @ad, notice: 'Incorrect User. Must be owner of Ad to edit.'} 
+			format.json { render json: @ad.errors, status: :unprocessable_entity }
+		end
+	end
   end
 
 
   # PUT /ads/1
   # PUT /ads/1.json
   def update
-    @ad = Ad.find(params[:id])
 
-    respond_to do |format|
-      if @ad.update_attributes(params[:ad])
-        format.html { redirect_to @ad, notice: 'Ad was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @ad.errors, status: :unprocessable_entity }
-      end
-    end
+    @ad = Ad.find(params[:id])
+	if !check_if_owner(@ad.user_id)
+		respond_to do |format|
+			format.html { redirect_to @ad, notice: 'Incorrect User. Must be owner of Ad to edit.'} 
+			format.json { render json: @ad.errors, status: :unprocessable_entity }
+		end
+		return
+	end
+	
+	respond_to do |format|
+	    if @ad.update_attributes(params[:ad])
+			format.html { redirect_to @ad, notice: 'Ad was successfully updated.' }
+			format.json { head :ok }
+		 else
+			format.html { render action: "edit" }
+			format.json { render json: @ad.errors, status: :unprocessable_entity }
+		 end
+	end
+
   end
   
   
@@ -99,6 +114,13 @@ class AdsController < ApplicationController
   # DELETE /ads/1.json
   def destroy
     @ad = Ad.find(params[:id])
+	if !check_if_owner(@ad.user_id)
+		respond_to do |format|
+			format.html { redirect_to @ad, notice: 'Incorrect User. Must be owner of Ad to edit.'} 
+			format.json { render json: @ad.errors, status: :unprocessable_entity }
+		end
+		return
+	end
     @ad.destroy
 
     respond_to do |format|
@@ -106,4 +128,14 @@ class AdsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  
+  protected
+	def check_if_owner (auser_id)
+		if current_user.id != auser_id
+			return false
+		end
+	end
+	
+  
 end

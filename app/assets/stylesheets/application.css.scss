@@ -19,7 +19,6 @@
 #user_nav{
 	float: right;
 	padding: 12px;
-
 }
 
 #banner {
@@ -35,6 +34,16 @@
   }
 }
 
+#nav_bar{
+	background: #E6E6E6;
+	border: 1px solid;
+	padding: 6px;
+	font: small-caps 60px/60px "Courier New", monospace;
+	color: #333366;
+
+}
+
+
 #notice {
   color: #000 !important;
   border: 2px solid red;
@@ -44,24 +53,14 @@
   font: bold smaller sans-serif;
 }
 
-#columns {
-  background: #FFFFFF;
-  border: 1px solid;
 
+#main {
 
-  #main {
-    margin-left: 15em;
-    padding: 1em;
+    padding: 2em;
+	padding-left: 3em;
 	padding-bottom: 10em;
     background: white;
-	border: 1px solid;
-  }
-
-  #side {
-    float: left;
-    padding: 1em 2em;
-    width: 10em;
-    background: #FFFFFF;
+	//border: 1px solid;
 
 
     ul {
@@ -76,6 +75,6 @@
         }
       }
     }
-  }
 }
+
 /* END_HIGHLIGHT */

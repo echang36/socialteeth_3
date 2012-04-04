@@ -36,5 +36,10 @@
 <h3> Contribute </h3>
 <%= render :partial => '/contributions/form', :locals=> {:contribution => Contribution.new, :ad_id => @ad.id} %>
 
-<%= link_to 'Edit', edit_ad_path(@ad) %> |
-<%= link_to 'Back', ads_path %>
+
+<p>
+
+	<%= link_to 'Edit', edit_ad_path(@ad) %> |
+	<%= link_to 'Back', ads_path %>
+
+</p>
