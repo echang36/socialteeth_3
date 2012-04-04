@@ -17,7 +17,8 @@ end
 
 gem 'jquery-rails'
 gem "devise", ">=1.5.0"
-gem 'ruby-oembed'
+gem "ruby-oembed"
+gem "cancan"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

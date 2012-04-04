@@ -1,7 +1,7 @@
 class AdsController < ApplicationController
   
   before_filter :authenticate_user!, :except=>[:show, :index]
-  #before_filter :check_if_owner, :only=>[:edit, :update, :destroy]
+  load_and_authorize_resource
   
   # GET /ads
   # GET /ads.json
@@ -73,6 +73,8 @@ class AdsController < ApplicationController
   # GET /ads/1/edit
   def edit
     @ad = Ad.find(params[:id])
+	
+	
 	if !check_if_owner(@ad.user_id)
 		respond_to do |format|
 			format.html { redirect_to @ad, notice: 'Incorrect User. Must be owner of Ad to edit.'} 
@@ -137,5 +139,4 @@ class AdsController < ApplicationController
 		end
 	end
 	
-  
 end

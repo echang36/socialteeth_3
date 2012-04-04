@@ -38,8 +38,9 @@
 
 
 <p>
-
+<% if can? :update, @ad %>
 	<%= link_to 'Edit', edit_ad_path(@ad) %> |
-	<%= link_to 'Back', ads_path %>
-
+	<%= link_to 'Delete Ad', {:action=>"destroy", :controller=>"ads"} %>
+<% end %>
+<%= link_to 'Back', ads_path %>
 </p>
