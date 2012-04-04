@@ -13,7 +13,7 @@
 <% @ads.each do |ad| %>
   <tr>
     <td><%= ad.title %></td>
-    <td><%= ad.goal %></td>
+    <td><%= number_to_currency(ad.goal) %></td>
     <td><%= ad.user.name%></td>
     <td><%= link_to 'Show', ad %></td>
     <td><%= link_to 'Edit', edit_ad_path(ad) %></td>

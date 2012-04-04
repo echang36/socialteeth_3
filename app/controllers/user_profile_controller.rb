@@ -6,7 +6,10 @@ class UserProfileController < ApplicationController
 	
 	if user_signed_in?
 		
-		@owned_ads=Ad.find_by_user_email(current_user.email)
+		@owned_ads= Ad.where(user_id: current_user.id)
+		@contributions = Contribution.where(user_id: current_user.id)
+		
+		
 		#@contributions=Contribution.where(user: current_user)
 	else
 		redirect_to sign_in_path and return

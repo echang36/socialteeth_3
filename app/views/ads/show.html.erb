@@ -2,25 +2,14 @@
 <h2>   <%= @ad.title %> </h2>
 
 <p>
-	<b> Ad ID: </b>
-	<%= @ad.id %>
+	<b> Watch the ad </b> </br>
+	<%= @res.html.html_safe %>
+</p>
 
 <p>
   <b>Owner:</b>
 	<%= @ad.user.name %>
 </p>
-
-
-<p>
-  <b>Link:</b>
-  <%= @ad.link %>
-</p>
-
-<p>
-	<b> Watch the ad </b> </br>
-	<%= @res.html.html_safe %>
-</p>
-
 
 <p>
   <b>Description:</b>
@@ -29,17 +18,20 @@
 
 
 <p>
-  <b>Goal:</b> <%= @ad.goal %> <br />
+  <b>Goal: </b> <%= number_to_currency(@ad.goal) %> <br />
+  <b>Amount Raised: </b><%= number_to_currency(@raised) %> 
 </p>
 
+<!--
 <p>
   <b>Contributions:</b> 
   <% @ad_contributions.each do |a| %>
 	<ul>
-	<li> <%= a.user.name %>, <%= a.amount %></li>
+	<li> <%= a.user.name %>, <%= number_to_currency(a.amount) %></li>
   </ul>		
   <% end %>
 </p>
+-->
 
 <h3> Contribute </h3>
 <%= render :partial => '/contributions/form', :locals=> {:contribution => Contribution.new, :ad_id => @ad.id} %>

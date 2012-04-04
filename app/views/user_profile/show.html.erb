@@ -3,29 +3,21 @@
 
 <p>
 	<b> Ads that you Own </b>
-	<table>
-		<tr>
-			<th>Ad</th>
-			<th>Amount Raised</th>
-			<th>Fundraising Goal </th>
-		</tr>
-		<% @owned_ads.each do |a| %>   
-			<tr>
-				<td><%= a.title %></td>
-				<td><"Add this functionality"></td>
-				<td><%= a.goal %></td>
-			</tr>
+	<ul>
+		<% @owned_ads.each do |a| %>   	
+			<li> <b> <%= a.title %></b>: <%= number_to_currency(a.goal) %> </li>
 		<% end %>
-	</table>
+	</ul>
 </p>
 
 
 <p>
 	<b> Contributions: </b>
 	<ul>
-	<% @contributions.each do |c| %>   
-		<li>  <%= c.ad.title %>: <%=c.amount %></li>
-	<% end %>
+		<% @contributions.each do |c| %>   
+			<li> <b><%= c.ad.title %></b>: <%=number_to_currency(c.amount) %></li>
+		<% end %>
 	</ul>
 </p>
+
 

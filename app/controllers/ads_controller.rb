@@ -21,6 +21,9 @@ class AdsController < ApplicationController
   def show
     @ad = Ad.find(params[:id])
 	@ad_contributions = Contribution.where(ad_id: @ad.id)
+	@raised=0
+	@ad_contributions.each {|a| @raised += a.amount}
+		
 	
 	OEmbed::Providers.register_all
 	@res=OEmbed::Providers.get(@ad.link, {:maxwidth => 500})
@@ -29,6 +32,7 @@ class AdsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @ad }
     end
+	
   end
 
   
