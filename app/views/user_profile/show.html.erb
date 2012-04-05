@@ -15,7 +15,7 @@
 	<b> Contributions: </b>
 	<ul>
 		<% @your_contributions.each do |title,amount| %>   
-			<li> <b><%= title %></b>: <%=amount %></li>
+			<li> <b><%= title %></b>: <%=number_to_currency(amount) %></li>
 		<% end %>
 	</ul>
 </p>

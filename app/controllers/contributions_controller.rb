@@ -6,7 +6,7 @@ class ContributionsController < ApplicationController
   # GET /contributions
   # GET /contributions.json
   def index
-
+	@contributions = Contribution.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @contributions }
@@ -16,26 +16,24 @@ class ContributionsController < ApplicationController
   # GET /contributions/1
   # GET /contributions/1.json
   def show
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @contribution }
     end
   end
+  
+  
+  
 
   # GET /contributions/new
   # GET /contributions/new.json
   def new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @contribution }
     end
   end
 
-  # GET /contributions/1/edit
-  def edit
-  end
 
   # POST /contributions
   # POST /contributions.json
@@ -54,6 +52,12 @@ class ContributionsController < ApplicationController
   end
 
   
+  
+  # GET /contributions/1/edit
+  def edit
+  end
+  
+  
   # PUT /contributions/1
   # PUT /contributions/1.json
   def update
@@ -69,6 +73,9 @@ class ContributionsController < ApplicationController
   end
 
   
+  
+  
+  
   # DELETE /contributions/1
   # DELETE /contributions/1.json
   def destroy
@@ -78,8 +85,5 @@ class ContributionsController < ApplicationController
       format.json { head :ok }
     end
   end
-  
-
-	
   
 end
