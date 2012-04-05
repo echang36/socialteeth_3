@@ -6,8 +6,6 @@ class AdsController < ApplicationController
   # GET /ads
   # GET /ads.json
   def index
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @ads }
@@ -40,7 +38,6 @@ class AdsController < ApplicationController
   # GET /ads/new
   # GET /ads/new.json
   def new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @ad }
@@ -71,8 +68,6 @@ class AdsController < ApplicationController
   
   # GET /ads/1/edit
   def edit
-	
-	
   end
 
 

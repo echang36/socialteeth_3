@@ -14,8 +14,8 @@
 <p>
 	<b> Contributions: </b>
 	<ul>
-		<% @contributions.each do |c| %>   
-			<li> <b><%= c.ad_id %></b>: <%=number_to_currency(c.amount) %></li>
+		<% @your_contributions.each do |title,amount| %>   
+			<li> <b><%= title %></b>: <%=amount %></li>
 		<% end %>
 	</ul>
 </p>

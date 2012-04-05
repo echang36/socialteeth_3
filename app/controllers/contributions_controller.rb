@@ -1,12 +1,11 @@
 class ContributionsController < ApplicationController
 
   before_filter :authenticate_user!, :except=>[:show, :index]
-
+  load_and_authorize_resource
 
   # GET /contributions
   # GET /contributions.json
   def index
-    @contributions = Contribution.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +16,6 @@ class ContributionsController < ApplicationController
   # GET /contributions/1
   # GET /contributions/1.json
   def show
-    @contribution = Contribution.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +26,6 @@ class ContributionsController < ApplicationController
   # GET /contributions/new
   # GET /contributions/new.json
   def new
-    @contribution = Contribution.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,22 +35,12 @@ class ContributionsController < ApplicationController
 
   # GET /contributions/1/edit
   def edit
-    @contribution = Contribution.find(params[:id])
-	if !check_if_owner(@contribution.user_id)
-			respond_to do |format|
-			format.html { redirect_to user_profile_show_path, notice: 'Incorrect User. Must be owner of Ad to edit.'} 
-			format.json { render json: @contribution.errors, status: :unprocessable_entity }
-		end
-		return
-	end
   end
 
   # POST /contributions
   # POST /contributions.json
   def create
-
-	current_ad=Ad.find(params[:contribution][:ad])
-    @contribution = current_user.contributions.build(ad: current_ad, amount: params[:contribution][:amount])
+    @contribution = current_user.contributions.build(ad_id: params[:contribution][:ad_id], amount: params[:contribution][:amount])
 
     respond_to do |format|
       if @contribution.save
@@ -66,17 +53,10 @@ class ContributionsController < ApplicationController
     end
   end
 
+  
   # PUT /contributions/1
   # PUT /contributions/1.json
   def update
-    @contribution = Contribution.find(params[:id])
-	if !check_if_owner(@contribution.user_id)
-			respond_to do |format|
-			format.html { redirect_to user_profile_show_path, notice: 'Incorrect User. Must be owner of Ad to edit.'} 
-			format.json { render json: @contribution.errors, status: :unprocessable_entity }
-		end
-		return
-	end
     respond_to do |format|
       if @contribution.update_attributes(params[:contribution])
         format.html { redirect_to @contribution, notice: 'Contribution was successfully updated.' }
@@ -88,32 +68,18 @@ class ContributionsController < ApplicationController
     end
   end
 
+  
   # DELETE /contributions/1
   # DELETE /contributions/1.json
   def destroy
-   
-	@contribution = Contribution.find(params[:id])
-	if !check_if_owner(@contribution.user_id)
-			respond_to do |format|
-			format.html { redirect_to user_profile_show_path, notice: 'Incorrect User. Must be owner of Ad to edit.'} 
-			format.json { render json: @contribution.errors, status: :unprocessable_entity }
-		end
-		return
-	end
     @contribution.destroy
-
     respond_to do |format|
       format.html { redirect_to contributions_url }
       format.json { head :ok }
     end
   end
   
-    protected
-	def check_if_owner(cuser_id)
-		if current_user.id != cuser_id
-			return false
-		end
-	end
+
 	
   
 end
