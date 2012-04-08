@@ -6,6 +6,7 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,6 +20,7 @@ gem 'jquery-rails'
 gem "devise", ">=1.5.0"
 gem "ruby-oembed"
 gem "cancan"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
