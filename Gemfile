@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem "devise", ">=1.5.0"
 gem "ruby-oembed"
 gem "cancan"
+gem "paypal_adaptive"
 
 
 # To use ActiveModel has_secure_password
